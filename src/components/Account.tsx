@@ -7,9 +7,15 @@ export const Account: Component<{
 }> = ({ address, balance }) => {
 	return (
 		<div class="container">
-			<h2>Account details</h2>
-			<h6>Address: {address()}</h6>
-			<h6>Balance (EGLD): {ValueToMoney(balance())}</h6>
+			<div class="row">
+				<div class="col-sm">
+					<br />
+					<h3>Account details</h3>
+					<h6>Address: {address()}</h6>
+					<h6>Balance (EGLD): {ValueToMoney(balance())}</h6>
+					<br />
+				</div>
+			</div>
 		</div>
 	);
 };

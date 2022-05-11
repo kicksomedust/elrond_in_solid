@@ -1,6 +1,7 @@
 import { For, Component } from "solid-js";
 import { ValueToMoney } from "./Utils";
 import { TimestampToDate } from "./Utils";
+import { NavigateTransactions } from "./NavigateTransactions";
 
 export interface Transaction {
 	hash: string;
@@ -11,10 +12,26 @@ export interface Transaction {
 
 export const Transactions: Component<{
 	transactions: () => Transaction[];
-}> = ({ transactions }) => {
+	page: () => number;
+	onSetPage: (page) => void;
+}> = ({ transactions, page, onSetPage }) => {
+	//
+
 	return (
-		<div class="container-fluid">
-			<h6>Transactions:</h6>
+		<div>
+			<div class="container">
+				<div class="row" style={{ display: "flex" }}>
+					<div class="col-sm" style={{ flex: "10" }}>
+						<h6>Transactions:</h6>
+					</div>
+					<div class="col-sm">
+						<NavigateTransactions
+							page={page}
+							onSetPage={(page) => onSetPage(page)}
+						/>
+					</div>
+				</div>
+			</div>
 			<table class="table">
 				<thead>
 					<tr>

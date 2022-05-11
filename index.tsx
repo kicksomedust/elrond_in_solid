@@ -10,35 +10,37 @@ const App: Component = () => {
 	const [address, setAddress] = createSignal<string>("");
 	const [balance, setBalance] = createSignal<number>(0);
 	const [transactions, setTransactions] = createSignal<Transaction[]>([]);
+	const [page, setPage] = createSignal<number>(1);
+	const pageSize: number = 10;
 
 	createEffect(() => {
-		setTransactions([]);
-		setBalance(0);
-
-		if (address() !== undefined) {
-			if (address() !== "") {
-				console.log(address());
-				axios
-					.get(`https://api.elrond.com/address/${address()}/transactions`)
-					.then((res) => {
-						setTransactions(res.data.data.transactions);
-						//console.log(this.state.transactions);
-					})
-					.catch((response) => {
-						console.log(response);
-					});
-
-				axios
-					.get(`https://api.elrond.com/address/${address()}/balance`)
-					.then((res) => {
-						setBalance(res.data.data.balance);
-						console.log(balance());
-					})
-					.catch((response) => {
-						console.log(response);
-					});
-			}
+		if (address() === undefined || address() === "") {
+			setTransactions([]);
+			setBalance(0);
+			return;
 		}
+
+		const from = page() * pageSize;
+		axios
+			.get(
+				`https://api.elrond.com/accounts/${address()}/transactions?from=${from}&size=${pageSize}&withLogs=false`
+			)
+			.then((res) => {
+				setTransactions(res.data);
+			})
+			.catch((response) => {
+				console.log(response);
+			});
+
+		axios
+			.get(`https://api.elrond.com/address/${address()}/balance`)
+			.then((res) => {
+				setBalance(res.data.data.balance);
+				console.log(balance());
+			})
+			.catch((response) => {
+				console.log(response);
+			});
 	});
 
 	const getStyle = () => {
@@ -59,7 +61,11 @@ const App: Component = () => {
 						onSetAddress={(str) => setAddress(str)}
 					/>
 					<Account address={address} balance={balance} />
-					<Transactions transactions={transactions} />
+					<Transactions
+						transactions={transactions}
+						page={page}
+						onSetPage={(page) => setPage(page)}
+					/>
 				</div>
 			</div>
 		</div>

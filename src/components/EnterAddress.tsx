@@ -4,6 +4,7 @@ export const EnterAddress: Component<{
 	address: string;
 	onSetAddress: (str) => void;
 }> = ({ address, onSetAddress }) => {
+	//
 	onsubmit = (e) => {
 		e.preventDefault();
 		let address = e.currentTarget[0];
@@ -12,19 +13,24 @@ export const EnterAddress: Component<{
 
 	return (
 		<div class="container-fluid">
-			<form onSubmit={onsubmit} style={{ display: "flex" }}>
+			<form
+				onSubmit={onsubmit}
+				style={{ display: "flex" }}
+				class="bg-dark text-white"
+			>
 				<input
 					type="text"
 					id="address"
 					placeholder="Elrond account address ..."
-					style={{ flex: "10", padding: "5px" }}
 					value={address}
+					style={{ flex: "10" }}
+					class="rounded"
 				/>
 				<input
 					type="submit"
-					value="Submit"
-					className="btn"
+					value="Search"
 					style={{ flex: "1" }}
+					class="rounded"
 				/>
 			</form>
 		</div>
