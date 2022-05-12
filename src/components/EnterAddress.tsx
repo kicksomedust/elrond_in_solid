@@ -12,27 +12,25 @@ export const EnterAddress: Component<{
 	};
 
 	return (
-		<div class="container-fluid">
-			<form
-				onSubmit={onsubmit}
-				style={{ display: "flex" }}
-				class="bg-dark text-white"
-			>
-				<input
-					type="text"
-					id="address"
-					placeholder="Elrond account address ..."
-					value={address}
-					style={{ flex: "10" }}
-					class="rounded"
-				/>
-				<input
-					type="submit"
-					value="Search"
-					style={{ flex: "1" }}
-					class="rounded"
-				/>
-			</form>
-		</div>
+		<form
+			onSubmit={onsubmit}
+			style={{ display: "flex" }}
+			class="bg-dark text-white"
+		>
+			<input
+				type="text"
+				id="address"
+				placeholder="Elrond account address ..."
+				value={address}
+				style={{ flex: "10" }}
+				class="rounded"
+			/>
+			<input
+				type="submit"
+				value="Search"
+				style={{ flex: "1" }}
+				class="rounded"
+			/>
+		</form>
 	);
 };

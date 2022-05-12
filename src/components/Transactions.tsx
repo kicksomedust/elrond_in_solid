@@ -14,22 +14,22 @@ export const Transactions: Component<{
 	transactions: () => Transaction[];
 	page: () => number;
 	onSetPage: (page) => void;
-}> = ({ transactions, page, onSetPage }) => {
+	transactionCount: () => number;
+}> = ({ transactions, page, onSetPage, transactionCount }) => {
 	//
 
 	return (
-		<div>
-			<div class="container">
-				<div class="row" style={{ display: "flex" }}>
-					<div class="col-sm" style={{ flex: "10" }}>
-						<h6>Transactions:</h6>
-					</div>
-					<div class="col-sm">
-						<NavigateTransactions
-							page={page}
-							onSetPage={(page) => onSetPage(page)}
-						/>
-					</div>
+		<>
+			<div class="row" style={{ display: "flex" }}>
+				<div class="col-sm" style={{ flex: "10" }}>
+					<h6>Transactions: (count={transactionCount()})</h6>
+				</div>
+				<div class="col-sm" style={{ flex: "1" }}>
+					<NavigateTransactions
+						page={page}
+						onSetPage={(page) => onSetPage(page)}
+						transactionCount={transactionCount}
+					/>
 				</div>
 			</div>
 			<table class="table">
@@ -52,6 +52,6 @@ export const Transactions: Component<{
 					</For>
 				</tbody>
 			</table>
-		</div>
+		</>
 	);
 };

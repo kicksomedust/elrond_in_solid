@@ -12,7 +12,9 @@
 		"axios": "^0.21.1",
 		"babel-preset-solid": "1.0.0",
 		"solid-bootstrap": "1.0.8",
-		"solid-js": "1.2.5"
+		"solid-js": "1.2.5",
+		"solid-styled-jsx": "0.27.1",
+		"styled-jsx": "3.4.4"
 	},
 	"devDependencies": {
 		"@babel/core": "7.17.10",
