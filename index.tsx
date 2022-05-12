@@ -9,7 +9,7 @@ const App: Component = () => {
 
 	const getStyle = () => {
 		return {
-			background: "#b2b2b2",
+			background: "#b7bfd7",
 			padding: "10px",
 			borderBottom: "1px #cc dotted",
 		};
